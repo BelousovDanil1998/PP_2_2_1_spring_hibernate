@@ -5,9 +5,12 @@ import javax.persistence.*;
 @Entity
 @Table(name = "car")
 public class Car {
-    private String Model;
+    private String model;
 
     private int series;
+
+    @OneToOne(mappedBy = "car")
+    private User user;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,16 +20,16 @@ public class Car {
     }
 
     public Car(String model, int series) {
-        Model = model;
+        this.model = model;
         this.series = series;
     }
 
     public String getModel() {
-        return Model;
+        return model;
     }
 
     public void setModel(String model) {
-        Model = model;
+        this.model = model;
     }
 
     public int getSeries() {
@@ -48,7 +51,7 @@ public class Car {
     @Override
     public String toString() {
         return "Car{" +
-                "Model='" + Model + '\'' +
+                "Model='" + model + '\'' +
                 ", series=" + series +
                 ", id=" + id +
                 '}';

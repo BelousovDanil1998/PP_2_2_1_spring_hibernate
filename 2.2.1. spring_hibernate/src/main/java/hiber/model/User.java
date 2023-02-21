@@ -1,6 +1,8 @@
 package hiber.model;
 
 
+import org.springframework.context.annotation.Primary;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,7 +11,9 @@ public class User {
 
     @OneToOne
     @JoinColumn(name = "CarId")
+    @MapsId
     private Car car;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,7 +30,8 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email) {
+    public User(Car car, String firstName, String lastName, String email) {
+        this.car = car;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -66,11 +71,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "User " +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+                ", email='" + email;
     }
 }

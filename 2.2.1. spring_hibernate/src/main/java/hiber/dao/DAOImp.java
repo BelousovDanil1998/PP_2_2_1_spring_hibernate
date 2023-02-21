@@ -11,10 +11,11 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class UserDaoImp implements UserDao {
+public class DAOImp implements DAO {
 
     @Autowired
     private SessionFactory sessionFactory;
+
 
     @Override
     public User getUserByCar(String model, int series) {
@@ -31,6 +32,8 @@ public class UserDaoImp implements UserDao {
         }
         return null;
     }
+
+
 
     @Override
     public void add(User user) {
